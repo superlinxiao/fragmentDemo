@@ -1,5 +1,6 @@
 package com.linxiao.fragmentdemo.fragment;
 
+import android.animation.Animator;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -33,9 +34,20 @@ public class SocialFragment extends Fragment {
             public void onStartDetail() {
                 SocialDetailFragment socialDetailFragment = SocialDetailFragment.newInstance();
                 FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+                //感觉TRANSIT_FRAGMENT_OPEN TRANSIT_FRAGMENT_CLOSE TRANSIT_FRAGMENT_FADE 这三个动画效果没啥区别
+//                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+
+                //android.app.fragment的动画需要使用animator（属性动画）,并且要再show/hide等操作之前执行
+                //support包中的fragment需要使用anim（补间动画）
+                ft.setCustomAnimations(
+                        R.animator.fragment_slide_left_enter,
+                        R.animator.fragment_slide_left_exit,
+                        R.animator.fragment_slide_right_enter,
+                        R.animator.fragment_slide_right_exit);
                 ft.add(R.id.social_fragment_container, socialDetailFragment, null);
                 ft.hide(socialListFragment);
                 ft.addToBackStack(null);
+
                 ft.commitAllowingStateLoss();
             }
         });
@@ -51,4 +63,8 @@ public class SocialFragment extends Fragment {
         return fragment;
     }
 
+    @Override
+    public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) {
+        return super.onCreateAnimator(transit, enter, nextAnim);
+    }
 }
