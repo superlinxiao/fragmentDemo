@@ -48,4 +48,18 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:background="#ff0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:text="replace test"
+            android:onClick="replaceTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
 </RelativeLayout>

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -57,7 +58,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         //3
         MineFragment mineFragment = MineFragment.newInstance();
         fragmentTransaction.add(R.id.fragment_container, mineFragment, "mineFragment");
-        fragmentTransaction.hide(mineFragment);
         mList.add(mineFragment);
         fragmentTransaction.commit();
         show(0);
@@ -108,5 +108,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
             return;
         }
         super.onBackPressed();
+    }
+
+    public void replaceTest(View view) {
+        startActivity(new Intent(this,ReplaceTestActivity.class));
     }
 }
