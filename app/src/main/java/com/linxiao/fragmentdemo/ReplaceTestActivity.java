@@ -17,6 +17,9 @@ import com.linxiao.fragmentdemo.fragment.MineFragment;
  * 其他：
  *
  * 如果是通过add方式添加到的fragmentManager中，那么再重构的时候，会继续留在fragmentManager中.
+ *
+ * 另外参考回忆录：
+ * 使用loadrootfragment不复用，导致null的原因探究
  */
 public class ReplaceTestActivity extends Activity {
 
