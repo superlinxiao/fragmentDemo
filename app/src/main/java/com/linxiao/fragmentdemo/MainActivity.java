@@ -46,7 +46,8 @@ import java.util.List;
  * 1.如果系统杀死了你的activity, 你的activity将会重建, 使用了上述步骤2保存的状态, 所以A会显示, B不会显示;
  * 2.如果系统没有杀死你的activity, 它会被提到前台, FragmentB就会显示出来, 到下次Activity stop的时候, 这个包含了B的状态就会被存下来.
  *
- * 4.activity的生命周期和fragment的生命周期中，一般是先执行fragment的方法，再执行activity。
+ * 4.activity的生命周期和fragment的生命周期中，初始化的时候，限制性activity的，退出的时候先执行fragment的，和栈的规则类似。
+ * activity onstart > fragment onstart >activity onresume >fragment onResume >fragment onpause >activity onpause >fragment onstop >activity onstop
  */
 public class MainActivity extends Activity implements View.OnClickListener {
 
