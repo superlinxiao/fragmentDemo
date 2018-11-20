@@ -78,6 +78,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     FragmentTransaction fragmentTransaction = supportFragmentManager.beginTransaction();
     mList = new ArrayList<>();
     boolean isRestore = true;
+    //测试第二部：保证activity被回收后，可以复用之前的fragment
+    //测试第三步：在开发者模式中设置不保留活动
     //1
     mSocialFragment = (SocialFragment) supportFragmentManager.findFragmentByTag(SOCIAL_FRAGMENT);
     if (mSocialFragment == null) {
@@ -202,6 +204,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
   protected void onSaveInstanceState(Bundle outState) {
     Log.i(TAG, "onSaveInstanceState");
     super.onSaveInstanceState(outState);
+    //测试第一步：在onSaveInstanceState之后执行commit操作
     Log.i(TAG, "run");
     show(2);
   }
