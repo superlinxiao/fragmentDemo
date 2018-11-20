@@ -2,9 +2,11 @@ package com.linxiao.fragmentdemo;
 
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.linxiao.fragmentdemo.fragment.MineFragment;
 
@@ -33,6 +35,11 @@ public class ReplaceTestActivity extends Activity {
 
     private void initView() {
         FragmentManager supportFragmentManager = getFragmentManager();
+        Fragment socialFragment = supportFragmentManager.findFragmentByTag("socialFragment");
+        if(socialFragment!=null){
+            Toast.makeText(this,"复用之前的fragment",Toast.LENGTH_SHORT).show();
+            return;
+        }
         FragmentTransaction fragmentTransaction = supportFragmentManager.beginTransaction();
         MineFragment mSocialFragment = MineFragment.newInstance();
         fragmentTransaction.replace(R.id.fragment_container, mSocialFragment, "socialFragment");
