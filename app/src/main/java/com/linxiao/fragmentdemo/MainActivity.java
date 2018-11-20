@@ -29,8 +29,8 @@ import java.util.List;
  * onPause之后，用户可见，不可操作
  * onStop之后，用户不可见，不可操作
  * <p>
- *
- *
+ * <p>
+ * <p>
  * 3. commitAllowingStateLoss作用，不需要检查activity的state是否被保存，即不需要检查当前页面是不是进入后台。
  * 但是如果在commit的时候，onSaveInstanceState方法已经执行过了，那么fragmentManager的状态不会保存下来。
  * ui显示的效果如下
@@ -45,11 +45,8 @@ import java.util.List;
  * 这时候, 用户再返回应用, 可能会有两种情况发生:
  * 1.如果系统杀死了你的activity, 你的activity将会重建, 使用了上述步骤2保存的状态, 所以A会显示, B不会显示;
  * 2.如果系统没有杀死你的activity, 它会被提到前台, FragmentB就会显示出来, 到下次Activity stop的时候, 这个包含了B的状态就会被存下来.
- * ---------------------
- * 作者：I_am_zhengkaiyuan
- * 来源：CSDN
- * 原文：https://blog.csdn.net/kaizideai/article/details/68484187
- * 版权声明：本文为博主原创文章，转载请附上博文链接！
+ *
+ * 4.activity的生命周期和fragment的生命周期中，一般是先执行fragment的方法，再执行activity。
  */
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -59,10 +56,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
   private List<Fragment> mList;
   private SocialFragment mSocialFragment;
 
-  private static final String TAG = "MainActivity";
+  public static final String TAG = "MainActivity";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    Log.i(TAG, "onCreate start");
     super.onCreate(savedInstanceState);
     Log.i(TAG, "onCreate");
     setContentView(R.layout.activity_main);
@@ -195,6 +193,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
   @Override
   protected void onPause() {
+    Log.i(TAG, "onPause start");
     super.onPause();
     Log.i(TAG, "onPause");
     showTag("onPause");

@@ -4,10 +4,12 @@ package com.linxiao.fragmentdemo.fragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.linxiao.fragmentdemo.MainActivity;
 import com.linxiao.fragmentdemo.R;
 
 /**
@@ -28,5 +30,17 @@ public class ShoppingFragment extends Fragment {
         ShoppingFragment fragment = new ShoppingFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.e(MainActivity.TAG,"fragment oncreate");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.e(MainActivity.TAG,"fragment onPause");
     }
 }
